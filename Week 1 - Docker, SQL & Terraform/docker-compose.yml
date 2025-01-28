@@ -1,0 +1,36 @@
+services:
+  postgres:
+    image: postgres:14
+    restart: on-failure
+    container_name: ${DOCKER_CONTAINER}
+    env_file:
+      - .env
+    environment:
+      - POSTGRES_DB=${POSTGRES_SCHEMA}
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+    ports:
+      - "${HOST_PORT}:5432"
+    volumes:
+      - ./Scripts/init.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./data:/data
+  pgadminZ:
+    image: dpage/pgadmin4
+    restart: on-failure
+    container_name: pgadminZ
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=${PGADMIN_EMAIL}
+      - PGADMIN_DEFAULT_PASSWORD=${PGADMIN_PASSWORD}
+    ports:
+      - "${PGADMIN_PORT}:80"
+    volumes:
+      - pgadmin-data:/var/lib/pgadmin
+  python:
+    image: python:3.12.8
+    container_name: python
+    working_dir: /app  # Set the working directory inside the container
+    command: python
+    tty: true
+volumes:
+  postgres-data:
+  pgadmin-data:
