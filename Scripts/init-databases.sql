@@ -21,8 +21,6 @@ CREATE TABLE nyc_taxi_data (
     congestion_surcharge NUMERIC(10, 2)
 );
 
--- COPY nyc_taxi_data FROM '\data\green_tripdata_2019-10.csv' DELIMITER ',' CSV HEADER;
-
 CREATE TABLE taxi_zone_lookup (
     LocationID INT PRIMARY KEY,
     Borough VARCHAR(100),
@@ -30,4 +28,25 @@ CREATE TABLE taxi_zone_lookup (
     service_zone VARCHAR(100)
 );
 
--- COPY taxi_zone_lookup FROM '\data\taxi_zone_lookup.csv' DELIMITER ',' CSV HEADER;
+CREATE TABLE "yellow_trip_data" (
+  "index" INTEGER,
+  "VendorID" REAL,
+  "tpep_pickup_datetime" TIMESTAMP,
+  "tpep_dropoff_datetime" TIMESTAMP,
+  "passenger_count" REAL,
+  "trip_distance" REAL,
+  "RatecodeID" REAL,
+  "store_and_fwd_flag" TEXT,
+  "PULocationID" REAL,
+  "DOLocationID" REAL,
+  "payment_type" REAL,
+  "fare_amount" REAL,
+  "extra" REAL,
+  "mta_tax" REAL,
+  "tip_amount" REAL,
+  "tolls_amount" REAL,
+  "improvement_surcharge" REAL,
+  "total_amount" REAL,
+  "congestion_surcharge" REAL,
+  "Airport_fee" REAL
+);

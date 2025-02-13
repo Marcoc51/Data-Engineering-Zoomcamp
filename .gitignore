@@ -136,3 +136,6 @@ dump.sql
 
 postgres-data/*
 homework/your_username
+
+*.parquet
+*.csv
